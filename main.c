@@ -1,23 +1,35 @@
 #include "header.h"
+
 /**
- * main - check the code for Holberton School students.
+ * main - Calls the loop function.
  *
- * Return: Always 0.
+ * Return: EXIT_SUCCESS.
  */
+
+int main(void)
+{
+	shell_loop();
+	return (EXIT_SUCCESS);
+}
+
+/**
+ * shell_loop - Infinite loop for the shell.
+ * Return: Nothing.
+ */
+
 void shell_loop(void)
 {
 	char *line;
-	/*char **arguments;*/
-	int status;
+	char *arguments;
+	int status = 1;
 
-	do
-	{
-		printf("$ ");
-		line= read_line();
+	do {
+		printf("simple_shell> ");
+		line = read_line();
+		arguments = string_split(line);
+		/**status = execute(arguments);*/
 
 		free(line);
-	}
-	while(status);
+		free(arguments);
+	} while (status);
 }
-
-
