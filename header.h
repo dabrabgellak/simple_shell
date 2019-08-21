@@ -8,8 +8,11 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
+
 void shell_loop(void);
 char *read_line();
 char *string_split(char *line);
+int execute(char *args);
 
 #endif
