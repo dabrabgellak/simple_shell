@@ -20,16 +20,15 @@ int main(void)
 void shell_loop(void)
 {
 	char *line = 0;
-	char *arguments = 0;
+	char **token;
 	int status = 1;
 
-	do {
+	while (status)
+	 {
 		printf("simple_shell> ");
 		line = read_line();
-		arguments = string_split(line);
-		status = execute(arguments);
+		token = string_split(line);
+		status = execute(token);
 
-		free(line);
-		free(arguments);
-	} while (status);
+	}
 }
