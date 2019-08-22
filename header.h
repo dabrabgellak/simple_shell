@@ -12,7 +12,8 @@
 
 void shell_loop(void);
 char *read_line();
-char *string_split(char *line);
-int execute(char *args);
-
+char **string_split(char *line);
+int *execute(char *token[]);
+int _strlen(char *s);
+int _strcmp(char *s1, char *s2);
 #endif
