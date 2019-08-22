@@ -1,5 +1,4 @@
 #include "header.h"
-
 #define DELIM " "
 
 /**
@@ -9,21 +8,21 @@
 
 char *read_line()
 {
-	size_t sizeline = 0;
+	size_t sizeline = 1024;
 	char *line;
 
-	line = malloc(sizeof(char) * 1024);
+	line = malloc(sizeof(char) * sizeline);
 	if (line == NULL)
 	{
 		perror("Unable to allocate line");
 		exit(1);
 	}
-	free(line);
 
-	if (line != NULL)
-	{
-		getline(&line, &sizeline, stdin);
-	}
+		if (getline(&line, &sizeline, stdin) == EOF)
+			exit(0);
+
+	line[strlen(line) - 1] = '\0';
+
 	return (line);
 }
 
@@ -33,19 +32,20 @@ char *read_line()
  * Return: Token.
  */
 
-char *string_split(char *line)
+char **string_split(char *line)
 {
-	char *token = 0;
+	int len = 0;
+	char **token;
 
-	while (token != NULL)
-	{
-		token = strtok(line, DELIM);
-		if (line != NULL)
+	token = malloc(sizeof(char *) * 1024);
+		token[0] = strtok(line, DELIM);
+		while (token[len] != NULL)
 		{
-			printf("%s", token);
-			token = strtok(NULL, DELIM);
+			len++;
+			token[len] = strtok(NULL, DELIM);
+			printf("%s\n", token[0]);
 		}
-	}
+		token[len] = NULL;
 	return (token);
 }
 
@@ -55,22 +55,23 @@ char *string_split(char *line)
  * Return: .
  */
 
-int execute(char *args)
+int execute(char *token[])
 {
 	pid_t parent_id;
-	int status;
+	pid_t child_status;
 
 	parent_id = fork();
 	if (parent_id == 0)
 	{
-		if (execve(PATH, args[1]) == -1)
+		if (execve(token[0], token, NULL) == -1)
 		{
-			return (-1);
+			perror("NO EXISTO");
+			exit(0);
 		}
 	}
 	else
 	{
-		waitpid(parent_id, status, 0);
+		wait(&child_status);
 	}
-	return (status);
+	return (1);
 }
