@@ -6,9 +6,16 @@
  * Return: EXIT_SUCCESS.
  */
 
-int main(void)
-{
-	shell_loop();
+int main(int argc, char *argv[], char *env[]) {
+    int i;
+    for (i = 0; env[i] != NULL; i++) {
+        if (!_starts_with("PATH=", env[i])) {
+            continue;
+        }
+        paths = string_split(env[i] + 5, ":");
+        break;
+    }
+    shell_loop();
 	return (EXIT_SUCCESS);
 }
 
@@ -27,7 +34,7 @@ void shell_loop(void)
 	 {
 		printf("simple_shell> ");
 		line = read_line();
-		token = string_split(line);
+		token = string_split(line, " ");
 		status = execute(token);
 
 	}
