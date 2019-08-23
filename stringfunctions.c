@@ -42,9 +42,18 @@ int _strcmp(char *s1, char *s2)
 
 bool _starts_with(const char *pre, const char *str)
 {
+    size_t i;
     size_t lenpre = strlen(pre),
             lenstr = strlen(str);
-    return lenstr < lenpre ? false : memcmp(pre, str, lenpre) == 0;
+    if (lenstr < lenpre) {
+        return false;
+    }
+    for (i = 0; i < lenpre; i++) {
+        if (pre[i] != str[i]) {
+            return false;
+        }
+    }
+    return true;
 }
 
 char *_concat(char* str1, char* str2) {
