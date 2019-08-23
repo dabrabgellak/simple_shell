@@ -11,12 +11,10 @@
 #include <sys/wait.h>
 #include <stdbool.h>
 
-char **paths;
-
-void shell_loop(void);
+void shell_loop(char **paths);
 char *read_line();
 char **string_split(char *line, char *delim);
-int execute(char *token[]);
+int execute(char *token[], char **paths);
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 bool _starts_with(const char *pre, const char *str);

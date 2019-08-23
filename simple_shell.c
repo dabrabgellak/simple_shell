@@ -8,6 +8,7 @@
 
 int main(int argc, char *argv[], char *env[]) {
     int i;
+    char **paths = NULL;
     for (i = 0; env[i] != NULL; i++) {
         if (!_starts_with("PATH=", env[i])) {
             continue;
@@ -15,7 +16,7 @@ int main(int argc, char *argv[], char *env[]) {
         paths = string_split(env[i] + 5, ":");
         break;
     }
-    shell_loop();
+    shell_loop(paths);
 	return (EXIT_SUCCESS);
 }
 
@@ -24,7 +25,7 @@ int main(int argc, char *argv[], char *env[]) {
  * Return: Nothing.
  */
 
-void shell_loop(void)
+void shell_loop(char **paths)
 {
 	char *line = 0;
 	char **token;
@@ -35,7 +36,7 @@ void shell_loop(void)
 		printf("simple_shell> ");
 		line = read_line();
 		token = string_split(line, " ");
-		status = execute(token);
+		status = execute(token, paths);
 
 	}
 }

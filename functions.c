@@ -49,7 +49,11 @@ char **string_split(char *line, char *delim)
 	return (token);
 }
 
-char *get_exec_path(char* command) {
+// command is the command typed in the shell, without arguments
+// if the command is an absolute path (starts with "/"), returns command
+// otherwise, checks if a file named command exists in any of the $PATH directories
+// as soon as such a file is found, returns the absolute path to it.
+char *get_exec_path(char *command, char **paths) {
     int i;
     char* result;
     char* tmp;
@@ -81,7 +85,7 @@ char *get_exec_path(char* command) {
  * Return: .
  */
 
-int execute(char *token[])
+int execute(char *token[], char **paths)
 {
 	pid_t parent_id;
 	pid_t child_status;
@@ -90,7 +94,7 @@ int execute(char *token[])
 	parent_id = fork();
 	if (parent_id == 0)
 	{
-	    exec_path = get_exec_path(token[0]);
+	    exec_path = get_exec_path(token[0], paths);
 
 		//if (execve(token[0], token, NULL) == -1)
 		if (exec_path == NULL || execve(token[0] = exec_path, token, NULL) == -1)
