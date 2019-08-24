@@ -9,7 +9,7 @@
 char *read_line()
 {
 	size_t sizeline = 1024;
-	char *line;
+	char *line = NULL;
 
 	/*line = malloc(sizeof(char) * sizeline);
 	if (line == NULL)
@@ -31,20 +31,18 @@ char *read_line()
 /**
  * free_grid - frees a 2D grid
  * @token: grid
- * @height: height
  * Return: nothing
- 
-void free_grid(char **token, char height)
+ */
+void free_grid(char **token)
 {
-	int i; * counter *
+    int i;
 
-	for (i = 0; i < height; i++)
+	for (i = 0; token[i] != NULL; i++)
 	{
 		free(token[i]);
 	}
 	free(token);
 }
-*/
 
 /**
  * string_split - Separates the lines in tokens.
@@ -67,7 +65,6 @@ char **string_split(char *line, char *delim)
 			/**printf("%s\n", token[0]);*/
 		}
 		token[len] = NULL;
-/*	free_grid(token, 1); */
 	return (token);
 }
 
@@ -136,12 +133,13 @@ int execute(char *token[], char **paths)
 			exit(0);
 		}
 		token[0] = exec_path;
-	/*	if (execv(exec_path, token, NULL) == -1)*/
 		if (execv(exec_path, token) == -1)
 		{
 			perror("DOES NOT EXIST");
 			exit(0);
 		}
+		free_grid(token);
+		free(exec_path);
 	}
 	else
 	{
