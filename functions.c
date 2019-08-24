@@ -109,10 +109,9 @@ void env_builtin(char *env[])
 
 	for (i = 0; env[i] != NULL; i++)
 	{
-		write(STDIN_FILENO, env[i], _strlen(env[i]) * sizeof(char));
-		write(STDIN_FILENO, "\n", sizeof(char));
+		write(STDOUT_FILENO, env[i], _strlen(env[i]) * sizeof(char));
+		write(STDOUT_FILENO, "\n", sizeof(char));
 	}
-	fflush(STDIN_FILENO);
 }
 
 /**
