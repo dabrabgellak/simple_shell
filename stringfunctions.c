@@ -6,7 +6,7 @@
  * Return: len.
  */
 
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int len;
 
@@ -73,7 +73,7 @@ bool _starts_with(const char *pre, const char *str)
  *@str2: str2
  * Return: concatenated string.
  */
-char *_concat(char *str1, char *str2)
+char *_concat(const char *str1, const char *str2)
 {
 	int i, j;
 	char *res = malloc((_strlen(str1) + _strlen(str2) + 1) * sizeof(char));

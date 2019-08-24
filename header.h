@@ -15,8 +15,8 @@ void shell_loop(char **paths);
 char *read_line();
 char **string_split(char *line, char *delim);
 int execute(char *token[], char **paths);
-int _strlen(char *s);
+int _strlen(const char *s);
 int _strcmp(char *s1, char *s2);
 bool _starts_with(const char *pre, const char *str);
-char *_concat(char* str1, char* str2);
+char *_concat(const char* str1, const char* str2);
 #endif
