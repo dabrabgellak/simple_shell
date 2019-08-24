@@ -11,8 +11,6 @@
 
 int main(__attribute__((unused)) int argc,
 	__attribute__((unused))  char *argv[], char *env[])
-
-/*int main(int argc, char *argv[], char *env[])*/
 {
 	int i;
 	char **paths = NULL;
@@ -26,7 +24,7 @@ int main(__attribute__((unused)) int argc,
 		paths = string_split(env[i] + 5, ":");
 		break;
 	}
-	shell_loop(paths);
+	shell_loop(paths, env);
 	return (EXIT_SUCCESS);
 }
 
@@ -37,7 +35,7 @@ int main(__attribute__((unused)) int argc,
  * Return: Nothing.
  */
 
-void shell_loop(char **paths)
+void shell_loop(char **paths, char *env[])
 {
 	char *line = 0;
 	char **token;
@@ -48,7 +46,7 @@ void shell_loop(char **paths)
 		printf("simple_shell> ");
 		line = read_line();
 		token = string_split(line, " ");
-		status = execute(token, paths);
+		status = execute(token, paths, env);
 
 	}
 }

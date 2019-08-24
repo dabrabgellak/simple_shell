@@ -23,7 +23,7 @@ int _strlen(const char *s)
   *
   * Return: Always 0.
   */
-int _strcmp(char *s1, char *s2)
+int _strcmp(const char *s1, const char *s2)
 {
 	int len;
 
