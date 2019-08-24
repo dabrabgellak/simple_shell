@@ -33,10 +33,10 @@ char *read_line()
  * @token: grid
  * @height: height
  * Return: nothing
- */
+ 
 void free_grid(char **token, char height)
 {
-	int i; /* counter */
+	int i; * counter *
 
 	for (i = 0; i < height; i++)
 	{
@@ -44,6 +44,8 @@ void free_grid(char **token, char height)
 	}
 	free(token);
 }
+*/
+
 /**
  * string_split - Separates the lines in tokens.
  * @line: Line that is received.
@@ -65,7 +67,7 @@ char **string_split(char *line, char *delim)
 			/**printf("%s\n", token[0]);*/
 		}
 		token[len] = NULL;
-	free_grid(token, 1);
+/*	free_grid(token, 1); */
 	return (token);
 }
 
@@ -134,7 +136,8 @@ int execute(char *token[], char **paths)
 			exit(0);
 		}
 		token[0] = exec_path;
-		if (execv(exec_apth, token, NULL) == -1)
+	/*	if (execv(exec_path, token, NULL) == -1)*/
+		if (execv(exec_path, token) == -1)
 		{
 			perror("DOES NOT EXIST");
 			exit(0);

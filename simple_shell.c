@@ -9,7 +9,10 @@
  * Return: EXIT_SUCCESS.
  */
 
-int main(int argc, char *argv[], char *env[])
+int main(__attribute__((unused)) int argc,
+	__attribute__((unused))  char *argv[], char *env[])
+
+/*int main(int argc, char *argv[], char *env[])*/
 {
 	int i;
 	char **paths = NULL;
