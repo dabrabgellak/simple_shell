@@ -11,21 +11,39 @@ char *read_line()
 	size_t sizeline = 1024;
 	char *line;
 
-	line = malloc(sizeof(char) * sizeline);
+	/**line = malloc(sizeof(char) * sizeline);
 	if (line == NULL)
 	{
 		perror("Unable to allocate line");
-		exit(1);
-	}
+		exit(1);**/
+	
 
-		if (getline(&line, &sizeline, stdin) == EOF)
-			exit(0);
+	if (getline(&line, &sizeline, stdin) == EOF)
+	{	
+		exit(0);
+	}
 
 	line[strlen(line) - 1] = '\0';
 
 	return (line);
 }
 
+/**
+ * free_grid - frees a 2D grid
+ * @grid: grid
+ * @height: height
+ * Return: nothing
+ */
+void free_grid(char **token, char height)
+{
+	int i; /* counter */
+
+	for (i = 0; i < height; i++)
+	{
+		free(token[i]);
+	}
+	free(token);
+}
 /**
  * string_split - Separates the lines in tokens.
  * @line: Line that is received.
@@ -43,16 +61,18 @@ char **string_split(char *line, char *delim)
 		{
 			len++;
 			token[len] = strtok(NULL, delim);
-//			printf("%s\n", token[0]);
+			/**printf("%s\n", token[0]);*/
 		}
 		token[len] = NULL;
+	free_grid(token, 1);
 	return (token);
 }
 
-// command is the command typed in the shell, without arguments
-// if the command is an absolute path (starts with "/"), returns command
-// otherwise, checks if a file named command exists in any of the $PATH directories
-// as soon as such a file is found, returns the absolute path to it.
+/** command is the command typed in the shell, without arguments
+ if the command is an absolute path (starts with "/"), returns command
+ otherwise, checks if a file named command exists in any of the $PATH directories
+ as soon as such a file is found, returns the absolute path to it.
+*/
 char *get_exec_path(char *command, char **paths) {
     int i;
     char* result;
@@ -96,7 +116,7 @@ int execute(char *token[], char **paths)
 	{
 	    exec_path = get_exec_path(token[0], paths);
 
-		//if (execve(token[0], token, NULL) == -1)
+		/**if (execve(token[0], token, NULL) == -1)*/
 		if (exec_path == NULL || execve(token[0] = exec_path, token, NULL) == -1)
 		{
 			perror("NO EXISTO");
@@ -107,5 +127,7 @@ int execute(char *token[], char **paths)
 	{
 		wait(&child_status);
 	}
+
+	/**free(token);*/
 	return (1);
 }
