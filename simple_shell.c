@@ -46,7 +46,8 @@ void shell_loop(char **paths, char *env[], bool interactive)
 
 	while (status)
 	{
-		if (interactive) {
+		if (interactive)
+		{
 			write(STDOUT_FILENO, "simple_shell> ", 14 * sizeof(char));
 		}
 		line = read_line();
