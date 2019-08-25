@@ -11,7 +11,7 @@
 #include <sys/wait.h>
 #include <stdbool.h>
 
-void shell_loop(char **paths, char *env[]);
+void shell_loop(char **paths, char *env[], bool interactive);
 char *read_line();
 char **string_split(char *line, char *delim);
 int execute(char *token[], char **paths, char *env[]);

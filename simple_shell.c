@@ -14,6 +14,7 @@ int main(__attribute__((unused)) int argc,
 {
 	int i;
 	char **paths = NULL;
+	bool interactive;
 
 	for (i = 0; env[i] != NULL; i++)
 	{
@@ -24,7 +25,10 @@ int main(__attribute__((unused)) int argc,
 		paths = string_split(env[i] + 5, ":");
 		break;
 	}
-	shell_loop(paths, env);
+
+	interactive = isatty(STDIN_FILENO);
+
+	shell_loop(paths, env, interactive);
 	return (EXIT_SUCCESS);
 }
 
@@ -35,7 +39,7 @@ int main(__attribute__((unused)) int argc,
  * Return: Nothing.
  */
 
-void shell_loop(char **paths, char *env[])
+void shell_loop(char **paths, char *env[], bool interactive)
 {
 	char *line = 0;
 	char **token;
@@ -43,10 +47,11 @@ void shell_loop(char **paths, char *env[])
 
 	while (status)
 	{
-		printf("simple_shell> ");
+		if (interactive) {
+			printf("simple_shell> ");
+		}
 		line = read_line();
 		token = string_split(line, " ");
 		status = execute(token, paths, env);
-
 	}
 }

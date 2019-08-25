@@ -8,7 +8,7 @@
 
 char *read_line()
 {
-	size_t sizeline = 1024;
+	size_t sizeline;
 	char *line = NULL;
 
 	if (getline(&line, &sizeline, stdin) == EOF)
@@ -16,7 +16,9 @@ char *read_line()
 		exit(0);
 	}
 
-	line[strlen(line) - 1] = '\0';
+	if (line[strlen(line) - 1] == '\n') {
+		line[strlen(line) - 1] = '\0';
+	}
 
 	return (line);
 }
@@ -55,7 +57,6 @@ char **string_split(char *line, char *delim)
 		{
 			len++;
 			token[len] = strtok(NULL, delim);
-			/**printf("%s\n", token[0]);*/
 		}
 		token[len] = NULL;
 	return (token);
