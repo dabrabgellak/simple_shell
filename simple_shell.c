@@ -18,12 +18,11 @@ int main(__attribute__((unused)) int argc,
 
 	for (i = 0; env[i] != NULL; i++)
 	{
-		if (!_starts_with("PATH=", env[i]))
+		if (_starts_with("PATH=", env[i]))
 		{
-			continue;
+			paths = string_split(env[i] + 5, ":");
+			break;
 		}
-		paths = string_split(env[i] + 5, ":");
-		break;
 	}
 
 	interactive = isatty(STDIN_FILENO);
