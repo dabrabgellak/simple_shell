@@ -53,5 +53,7 @@ void shell_loop(char **paths, char *env[], bool interactive)
 		line = read_line();
 		token = string_split(line, " ");
 		status = execute(token, paths, env);
+		free(line);
+		free(token);
 	}
 }

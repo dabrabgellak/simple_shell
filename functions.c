@@ -24,22 +24,6 @@ char *read_line()
 }
 
 /**
- * free_grid - frees a 2D grid
- * @token: grid
- * Return: nothing
- */
-void free_grid(char **token)
-{
-    int i;
-
-	for (i = 0; token[i] != NULL; i++)
-	{
-		free(token[i]);
-	}
-	free(token);
-}
-
-/**
  * string_split - Separates the lines in tokens.
  * @line: Line that is received.
  * @delim: Delimeter that separates the tokens.
@@ -152,8 +136,6 @@ int execute(char *token[], char **paths, char *env[])
 			perror("DOES NOT EXIST");
 			exit(0);
 		}
-		free_grid(token);
-		free(exec_path);
 	}
 	else
 	{
