@@ -16,6 +16,14 @@ This repository contains a UNIX command line interpreter, called simple_shell wr
 
  - Handles the “end of file” condition (Ctrl+D).
 
+## :open_file_folder: Files
+
+FILENAME | DESCRIPTION | 
+------------ | -------------
+function.c | Functions used to get, tokenize and execute the arguments 
+header.c | Prototypes of the functions used
+simple_shell.c | Shell
+stringfunctions.c | Functions used to help with the get, tokenize and execution of arguments
 
 ## :computer:  Installation 
 
@@ -73,7 +81,7 @@ Some of the commands that work on the simple_shell.
 ```
 
 
-## Authors
+## :dancers: Authors
 - [Barbara Calle](@889@holbertonschool.com)
 - [Daniela Ramirez](dans@dans.com)
 - [Natalia Medina](@865@holbertonschool.com)
