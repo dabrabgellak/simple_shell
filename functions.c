@@ -12,13 +12,13 @@ char *read_line()
 	char *line = NULL;
 
 	if (getline(&line, &sizeline, stdin) == EOF)
-	{	
+	{
 		exit(0);
 	}
 
-	if (line[strlen(line) - 1] == '\n') {
+	if (line[strlen(line) - 1] == '\n')
+
 		line[strlen(line) - 1] = '\0';
-	}
 
 	return (line);
 }
@@ -88,6 +88,12 @@ char *get_exec_path(char *command, char **paths)
 	return (NULL);
 }
 
+/**
+ * env_builtin - Function that prints environment variables
+ * @env: Environment variable
+ * Return: Nothing.
+ */
+
 void env_builtin(char *env[])
 {
 	int i;
@@ -102,8 +108,9 @@ void env_builtin(char *env[])
 /**
  * execute - Executes.
  * @token: All arguments.
- * @paths: All the paths from $PATH environment variable.
- * Return: .
+ * @paths: All the paths from $PATH environment variable
+ * @env: Environment variable.
+ * Return: 1
  */
 
 int execute(char *token[], char **paths, char *env[])
@@ -115,7 +122,7 @@ int execute(char *token[], char **paths, char *env[])
 	if (_strcmp(token[0], "env") == 0)
 	{
 		env_builtin(env);
-		return 1;
+		return (1);
 	}
 	if (_strcmp(token[0], "exit") == 0)
 	{

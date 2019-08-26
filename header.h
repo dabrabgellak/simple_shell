@@ -18,5 +18,5 @@ int execute(char *token[], char **paths, char *env[]);
 int _strlen(const char *s);
 int _strcmp(const char *s1, const char *s2);
 bool _starts_with(const char *pre, const char *str);
-char *_concat(const char* str1, const char* str2);
+char *_concat(const char *str1, const char *str2);
 #endif
