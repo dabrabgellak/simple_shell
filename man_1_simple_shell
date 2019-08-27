@@ -1,6 +1,6 @@
-.TH simple_shell "version 1.0"
+.TH Dollarshell "version 1.0" "28/08/19"
 .SH NAME
-simple_shell \- Simple UNIX command interpreter.
+Dollar shell \- Simple UNIX command interpreter.
 
 .SH SYNOPSIS
 .B ./hsh [command string] [file]
@@ -12,9 +12,7 @@ Interprets flags and uses space as a delimiter between each argument.
 .SS Builtins
 This section list the builtin commands
 
-.TP
-\fBcd [directory]\fR
-Switch to the specified directory or for default HOME.
+
 .TP
 \fBexit [exitstatus]\fR
 Terminate the shell process.
@@ -24,6 +22,9 @@ Display information about builtin commands.
 .TP
 \fBenv [-] [NAME=VALUE]...\fR
 Prints out the current environment.
+
+.SS RETURN VALUE
+Returns what the command does.
 
 .SS INVOCATION
 Can be invoked by typing ./hsh to enter interactive mode.
