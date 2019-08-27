@@ -1,4 +1,4 @@
-# Dollar shell  :shell:
+# :heavy_dollar_sign: Dollar shell  :shell:
 
 This repository contains a UNIX command line interpreter, called Dollar shell written in C language.
 
