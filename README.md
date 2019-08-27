@@ -24,6 +24,15 @@ function.c | Functions used to get, tokenize and execute the arguments
 header.c | Prototypes of the functions used
 simple_shell.c | Shell
 stringfunctions.c | Functions used to help with the get, tokenize and execution of arguments
+man_1_simple_shell | Manual for the shell
+
+## :book: Man page
+
+The simple_shell has a man page which contains all the information about the usage of this one, the functions used and examples. To open the man page use the following command:
+
+```bash
+    $ man ./man_1_simple_shell
+```
 
 ## :computer:  Installation 
 
