@@ -49,7 +49,7 @@ void shell_loop(char **paths, char *env[], bool interactive)
 	{
 		if (interactive)
 		{
-			write(STDOUT_FILENO, "$ ", 14 * sizeof(char));
+			write(STDOUT_FILENO, "$ ", 1 * sizeof(char));
 		}
 		line = read_line();
 		token = string_split(line, " ");
