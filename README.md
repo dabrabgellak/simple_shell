@@ -1,6 +1,6 @@
-# Simple_shell  :shell:
+# Dollar shell  :shell:
 
-This repository contains a UNIX command line interpreter, called simple_shell written in C language.
+This repository contains a UNIX command line interpreter, called Dollar shell written in C language.
 
 ![simple-shell](https://media.giphy.com/media/UW7G17H9PLQbw1ksHX/giphy.gif)
 
@@ -28,7 +28,7 @@ man_1_simple_shell | Manual for the shell
 
 ## :book: Man page
 
-The simple_shell has a man page which contains all the information about the usage of this one, the functions used and examples. To open the man page use the following command:
+The Dollar shell has a man page which contains all the information about the usage of this one, the functions used and examples. To open the man page use the following command:
 
 ```bash
     $ man ./man_1_simple_shell
@@ -42,7 +42,7 @@ The simple_shell has a man page which contains all the information about the usa
     $ git clone https://github.com/dabrabgellak/simple_shell.git
 ```
 
-- The simple_shell will be compiled with gcc 4.8.4. To compile it use the following flags:
+- The Dollar shell will be compiled with gcc 4.8.4. To compile it use the following flags:
 
 ```bash
     $ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
@@ -61,7 +61,7 @@ The simple_shell has a man page which contains all the information about the usa
 
 ## :pushpin: Examples
 
-Some of the commands that work on the simple_shell.
+Some of the commands that work on the Dollar shell.
 
 ```bash
     $env
