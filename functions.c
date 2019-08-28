@@ -121,7 +121,7 @@ char *get_exec_path(char *command, char **paths)
  * Return: 1
  */
 
-int execute(char *argv0, char *token[], char **paths, char *env[])
+int execute(char *argv[], char *token[], char **paths, char *env[])
 {
 	pid_t parent_id;
 	pid_t child_status;
@@ -144,14 +144,14 @@ int execute(char *argv0, char *token[], char **paths, char *env[])
 		exec_path = get_exec_path(token[0], paths);
 		if (exec_path == NULL)
 		{
-			perror(argv0);
+			perror(argv[0]);
 			perror(":");
 			exit(0);
 		}
 		token[0] = exec_path;
 		if (execve(exec_path, token, env) == -1)
 		{
-			perror(argv0);
+			perror(argv[0]);
 			perror(":");
 			exit(0);
 		}
