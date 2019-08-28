@@ -1,0 +1,51 @@
+.TH Dollarshell "version 1.0" "28/08/19"
+.SH NAME
+Dollar shell \- Simple UNIX command interpreter.
+
+.SH SYNOPSIS
+.B ./hsh [command string] [file]
+
+.SH DESCRIPTION
+.B Is an sh- compatible command language interpreter that executes commands read from the standar input or from a file.
+Interprets flags and uses space as a delimiter between each argument.
+
+.SS Builtins
+This section list the builtin commands
+
+
+.TP
+\fBexit [exitstatus]\fR
+Terminate the shell process.
+.TP
+\fBhelp [PATTERN ...]\fR
+Display information about builtin commands.
+.TP
+\fBenv [-] [NAME=VALUE]...\fR
+Prints out the current environment.
+
+.SS RETURN VALUE
+Returns what the command does.
+
+.SS INVOCATION
+Can be invoked by typing ./hsh to enter interactive mode.
+
+Can be invoked by typing: [ echo "/bin/ls" | ./hsh ] to non-interactive mode.
+The prompt "$" will appear on the terminal.
+
+.SH SEE ALSO
+man sh, man exit, man strtok, man write, man wait, man execve, man perror, man fork, man isatty, man getline, man malloc.
+
+.SH BUGS
+At the moment no bugs founded.
+
+.SH EXAMPLE
+Type ./hsh to enter interactive mode. Enter pwd after the prompt appear.
+
+.B The output should be: /home/vagrant/simple_shell
+
+Type "ls" after the prompt appears.
+
+.B The output should be the list of the files and directories.
+
+.SH AUTHORS
+Bárbara Calle (889@holbertonschool.com), Daniela Ramírez (891@holbertonschool.com), Natalia Medina (865@holbertonschool.com)
