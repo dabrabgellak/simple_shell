@@ -1,4 +1,34 @@
 #include "header.h"
+/**
+ * shell_loop - Infinite loop for the shell.
+ * @paths: array of paths from environment variable $PATH
+ * @argv: To pass no argument number 0.
+ * @env: Environment variable
+ * @interactive: Boolean (To check if is true of false)
+ * Return: Nothing.
+ */
+void shell_loop(char *argv[], char **paths, char *env[], bool interactive)
+{
+	char *line = 0;
+	char **token;
+	int status = 1;
+
+	while (status)
+	{
+		if (interactive)
+		{
+		write(STDOUT_FILENO, "$ ", 2 * sizeof(char));
+		}
+		line = read_line();
+		if (line == NULL)
+			continue;
+
+		token = string_split(line, " ");
+		status = execute(argv, token, paths, env);
+		free(line);
+		free(token);
+	}
+}
 
 /**
  * main - Calls the loop function.
@@ -8,7 +38,6 @@
  *
  * Return: EXIT_SUCCESS.
  */
-
 int main(__attribute__((unused)) int argc,
 	__attribute__((unused))  char *argv[], char *env[])
 {
@@ -29,35 +58,4 @@ int main(__attribute__((unused)) int argc,
 
 	shell_loop(argv, paths, env, interactive);
 	return (EXIT_SUCCESS);
-}
-
-/**
- * shell_loop - Infinite loop for the shell.
- * @paths: array of paths from environment variable $PATH
- * @argv0: To pass no argument number 0.
- * @env: Environment variable
- * @interactive: Boolean (To check if is true of false)
- * Return: Nothing.
- */
-
-void shell_loop(char *argv[], char **paths, char *env[], bool interactive)
-{
-	char *line = 0;
-	char **token;
-	int status = 1;
-
-	while (status)
-	{
-		if (interactive)
-		{
-			write(STDOUT_FILENO, "$ ", 2 * sizeof(char));
-		}
-		line = read_line();
-		if (line == NULL)
-			continue;
-		token = string_split(line, " ");
-		status = execute(argv, token, paths, env);
-		free(line);
-		free(token);
-	}
 }
