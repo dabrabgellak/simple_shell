@@ -57,8 +57,8 @@ int _strcmp(char *s1, char *s2)
 bool _starts_with(const char *pre, const char *str)
 {
 	size_t i;
-	size_t lenpre = strlen(pre),
-			lenstr = strlen(str);
+	size_t lenpre = _strlen(pre),
+			lenstr = _strlen(str);
 	if (lenstr < lenpre)
 	{
 		return (false);
@@ -81,17 +81,17 @@ bool _starts_with(const char *pre, const char *str)
  */
 char *_concat(const char *str1, const char *str2)
 {
-	int i, j;
+	int count, secount;
 	char *res = malloc((_strlen(str1) + _strlen(str2) + 1) * sizeof(char));
 
-	for (i = 0, j = 0; i < _strlen(str1); i++)
+	for (count = 0, secount = 0; count < _strlen(str1); count++)
 	{
-		res[j++] = str1[i];
+		res[secount++] = str1[count];
 	}
-	for (i = 0; i < _strlen(str2); i++)
+	for (count = 0; count < _strlen(str2); count++)
 	{
-		res[j++] = str2[i];
+		res[secount++] = str2[count];
 	}
-	res[j] = '\0';
+	res[secount] = '\0';
 	return (res);
 }
