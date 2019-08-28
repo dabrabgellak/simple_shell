@@ -24,9 +24,9 @@ char *read_line()
 	}
 
 	/**Sends line to token*/
-	if (line[strlen(line) - 1] == '\n')
+	if (line[_strlen(line) - 1] == '\n')
 	{
-		line[strlen(line) - 1] = '\0';
+		line[_strlen(line) - 1] = '\0';
 	}
 	return (line);
 }
@@ -117,7 +117,7 @@ char *get_exec_path(char *command, char **paths)
  * @token: All arguments.
  * @paths: All the paths from $PATH environment variable
  * @env: Environment variable.
- * @argv0: To pass no argument number 0.
+ * @argv: To pass no argument number 0.
  * Return: 1
  */
 
