@@ -22,6 +22,7 @@ char *read_line(char **paths)
 	/**Checks the new line*/
 	if (line[0] == '\n' && _strlen(line) == 1)
 	{
+		free(line);
 		return (NULL);
 	}
 
@@ -62,7 +63,6 @@ char **string_split(char *line, char *delim)
 		token[len] = strtok(NULL, delim);
 	}
 	token[len] = NULL;
-
 	return (token);
 }
 
@@ -123,7 +123,7 @@ char *get_exec_path(char *command, char **paths)
  * Return: 1
  */
 
-int execute(char *argv[], char *token[], char **paths, char *env[])
+int execute(char *token[], char **paths, char *env[])
 {
 	pid_t parent_id;
 	pid_t child_status;
@@ -137,7 +137,12 @@ int execute(char *argv[], char *token[], char **paths, char *env[])
 	}
 	/** Exit builtin */
 	if (_strcmp(token[0], "exit") == 0)
+	{
+		free(token[0]);
+		free(token);
+		free(paths);
 		exit(0);
+	}
 	/** Creates a child */
 	parent_id = fork();
 	/** If its on the child */
@@ -146,14 +151,12 @@ int execute(char *argv[], char *token[], char **paths, char *env[])
 		exec_path = get_exec_path(token[0], paths);
 		if (exec_path == NULL)
 		{
-			perror(argv[0]);
 			perror(":");
 			exit(0);
 		}
 		token[0] = exec_path;
 		if (execve(exec_path, token, env) == -1)
 		{
-			perror(argv[0]);
 			perror(":");
 			exit(0);
 		}
