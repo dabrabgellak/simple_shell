@@ -23,31 +23,32 @@ int _strlen(const char *s)
   *
   * Return: Always 0.
   */
-int _strcmp(const char *s1, const char *s2)
+int _strcmp(char *s1, char *s2)
 {
-	int len;
+	int len = 0;
 
-	for (len = 0; s1[len] != '\0'; len++)
+	/** Traverse s1 */
+	while (s1[len] != '\0')
 	{
+		/** If s1 is less than s2 */
 		if (s1[len] < s2[len])
 		{
-		return (s1[len] - s2[len]);
+			/** Returns the difference between both */
+			return (s1[len] - s2[len]);
 		}
+
+		/** If s1 is greater than s2 */
 		if (s1[len] > s2[len])
 		{
-		return (s1[len] - s2[len]);
+			/** Return the difference between both */
+			return (s1[len] - s2[len]);
 		}
+
+		len++;
 	}
-		return (0);
+	return (0);
 }
 
-/**
- * _starts_with - checks whether a string starts with another string.
- *@pre: string prefix.
- *@str: a string.
- *
- * Return: true if a string starts with a given prefix.
- */
 bool _starts_with(const char *pre, const char *str)
 {
 	size_t i;
