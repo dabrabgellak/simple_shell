@@ -130,9 +130,10 @@ int execute(char *token[], char **paths, char *env[])
 	char *exec_path;
 
 	/** Env builtin */
-	if (_strcmp(token[0], "env") == 0)
+	if (_strcmp(token[0], "env") == 0) {
 		env_builtin(env);
 		return (1);
+	}
 
 	/** Exit builtin */
 	if (_strcmp(token[0], "exit") == 0)
@@ -146,12 +147,16 @@ int execute(char *token[], char **paths, char *env[])
 	{
 		exec_path = get_exec_path(token[0], paths);
 		if (exec_path == NULL)
+		{
 			perror("DOES NOT EXIST");
 			exit(0);
+		}
 		token[0] = exec_path;
 		if (execv(exec_path, token) == -1)
+		{
 			perror("DOES NOT EXIST");
 			exit(0);
+		}
 	}
 	else
 	{
