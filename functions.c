@@ -6,7 +6,7 @@
  * Return: line.
  */
 
-char *read_line()
+char *read_line(char **paths)
 {
 	size_t sizeline;
 	char *line = NULL;
@@ -14,6 +14,8 @@ char *read_line()
 	/** If ctrl + D  is pressed then exit the shell*/
 	if (getline(&line, &sizeline, stdin) == EOF)
 	{
+		free(line);
+		free (paths);
 		exit(0);
 	}
 
