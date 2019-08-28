@@ -18,9 +18,9 @@ This repository contains a UNIX command line interpreter, called Dollar shell wr
 
 ## :open_file_folder: Files
 
-FILENAME | DESCRIPTION | 
+FILENAME | DESCRIPTION |
 ------------ | -------------
-function.c | Functions used to get, tokenize and execute the arguments 
+function.c | Functions used to get, tokenize and execute the arguments
 header.c | Prototypes of the functions used
 simple_shell.c | Shell
 stringfunctions.c | Functions used to help with the get, tokenize and execution of arguments
@@ -34,7 +34,7 @@ The Dollar shell has a man page which contains all the information about the usa
     $ man ./man_1_simple_shell
 ```
 
-## :computer:  Installation 
+## :computer:  Installation
 
 - Clone the repository in a new directory:
 

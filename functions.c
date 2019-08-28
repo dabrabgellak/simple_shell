@@ -71,31 +71,20 @@ char **string_split(char *line, char *delim)
  * @paths: an array of paths where to check for an executable
  * Return: absolute path to execute a given command
  */
-
 char *get_exec_path(char *command, char **paths)
 {
 	int i;
-	char *result;
-	char *tmp;
-	char *local_command;
-
+	char *result, *tmp, *local_command;
 	/** If no command is passed */
 	if (command == NULL)
-	{
 		return (NULL);
-	}
-
 	/** Command starts with a '/', i.e. it is an absolute path */
 	if (command[0] == '/')
 	{
-		printf("ABSOLUTE\n");
 		if (access(command, X_OK) == -1)
-		{
 			return (NULL);
-		}
 		return (command);
 	}
-
 	tmp = getcwd(NULL, 0);
 	local_command = _concat(tmp, "/");
 	free(tmp);
@@ -104,20 +93,15 @@ char *get_exec_path(char *command, char **paths)
 	local_command = tmp;
 	/** Command is a file in the current directory */
 	if (access(local_command, X_OK) != -1)
-	{
 		return (local_command);
-	}
-
-	/** Gonna traverse path from i position while beening different than NULL */
+/** Gonna traverse path from i position while beening different than NULL */
 	for (i = 0; paths[i] != NULL; i++)
 	{
 		/** Concatenates the path and the slash and gonna be stored at tmp */
 		tmp = _concat(paths[i], "/");
-
 		/** result is gonna have the concatenation of command and tmp*/
 		result = _concat(tmp, command);
 		free(tmp);
-
 		if (access(result, X_OK) == -1)
 		{
 			free(result);
@@ -125,7 +109,6 @@ char *get_exec_path(char *command, char **paths)
 		}
 		return (result);
 	}
-
 	return (NULL);
 }
 

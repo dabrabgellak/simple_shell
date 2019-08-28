@@ -1,4 +1,4 @@
-#include "header.h"
+	#include "header.h"
 #include <stdbool.h>
 /**
  * _strlen - Length of a string.
@@ -48,6 +48,12 @@ int _strcmp(char *s1, char *s2)
 	return (1);
 }
 
+/**
+ * _starts_with - Boolean function that checks two strings
+ *@pre: string 1
+ *@str: string 2
+ *Return: true or false depends of the case.
+ */
 bool _starts_with(const char *pre, const char *str)
 {
 	size_t i;
