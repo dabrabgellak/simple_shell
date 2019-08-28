@@ -17,6 +17,13 @@ char *read_line()
 		exit(0);
 	}
 
+	/**Checks the new line*/
+	if (line[0] == '\n' && _strlen(line) == 1)
+	{
+		return (NULL);
+	}
+
+	/**Sends line to token*/
 	if (line[strlen(line) - 1] == '\n')
 	{
 		line[strlen(line) - 1] = '\0';
