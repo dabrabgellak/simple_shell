@@ -130,7 +130,8 @@ int execute(char *token[], char **paths, char *env[])
 	char *exec_path;
 
 	/** Env builtin */
-	if (_strcmp(token[0], "env") == 0) {
+	if (_strcmp(token[0], "env") == 0)
+	{
 		env_builtin(env);
 		return (1);
 	}
