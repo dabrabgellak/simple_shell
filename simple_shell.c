@@ -34,6 +34,7 @@ int main(__attribute__((unused)) int argc,
 /**
  * shell_loop - Infinite loop for the shell.
  * @paths: array of paths from environment variable $PATH
+ * @argv0: To pass no argument number 0.
  * @env: Environment variable
  * @interactive: Boolean (To check if is true of false)
  * Return: Nothing.

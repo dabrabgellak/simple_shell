@@ -117,6 +117,7 @@ char *get_exec_path(char *command, char **paths)
  * @token: All arguments.
  * @paths: All the paths from $PATH environment variable
  * @env: Environment variable.
+ * @argv0: To pass no argument number 0.
  * Return: 1
  */
 
@@ -132,14 +133,11 @@ int execute(char *argv0, char *token[], char **paths, char *env[])
 		env_builtin(env);
 		return (1);
 	}
-
 	/** Exit builtin */
 	if (_strcmp(token[0], "exit") == 0)
 		exit(0);
-
 	/** Creates a child */
 	parent_id = fork();
-
 	/** If its on the child */
 	if (parent_id == 0)
 	{
