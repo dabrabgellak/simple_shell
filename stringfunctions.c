@@ -28,25 +28,24 @@ int _strcmp(char *s1, char *s2)
 	int len = 0;
 
 	/** Traverse s1 */
-	while (s1[len] != '\0')
+	while (s1[len] != '\0' && s2[len] != '\0')
 	{
-		/** If s1 is less than s2 */
-		if (s1[len] < s2[len])
+		/** If s1 not equals to s2 */
+		if (s1[len] != s2[len])
 		{
 			/** Returns the difference between both */
 			return (s1[len] - s2[len]);
 		}
-
-		/** If s1 is greater than s2 */
-		if (s1[len] > s2[len])
-		{
-			/** Return the difference between both */
-			return (s1[len] - s2[len]);
-		}
-
 		len++;
 	}
-	return (0);
+	/** s1 and s2 of the same size - return 0 */
+	if (s1[len] == '\0' && s2[len] == '\0')
+		return (0);
+	/** s2 is longer than s1 - return -1 */
+	if (s1[len == '\0'])
+		return (-1);
+	/** s1 is longer than s2 - return 1 */
+	return (1);
 }
 
 bool _starts_with(const char *pre, const char *str)
