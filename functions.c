@@ -77,6 +77,7 @@ char *get_exec_path(char *command, char **paths)
 	int i;
 	char *result;
 	char *tmp;
+	char *local_command;
 
 	/** If no command is passed */
 	if (command == NULL)
@@ -87,11 +88,24 @@ char *get_exec_path(char *command, char **paths)
 	/** Command starts with a '/', i.e. it is an absolute path */
 	if (command[0] == '/')
 	{
+		printf("ABSOLUTE\n");
 		if (access(command, X_OK) == -1)
 		{
 			return (NULL);
 		}
 		return (command);
+	}
+
+	tmp = getcwd(NULL, 0);
+	local_command = _concat(tmp, "/");
+	free(tmp);
+	tmp = _concat(local_command, command);
+	free(local_command);
+	local_command = tmp;
+	/** Command is a file in the current directory */
+	if (access(local_command, X_OK) != -1)
+	{
+		return (local_command);
 	}
 
 	/** Gonna traverse path from i position while beening different than NULL */
@@ -153,7 +167,7 @@ int execute(char *token[], char **paths, char *env[])
 			exit(0);
 		}
 		token[0] = exec_path;
-		if (execv(exec_path, token) == -1)
+		if (execve(exec_path, token, env) == -1)
 		{
 			perror("DOES NOT EXIST");
 			exit(0);
