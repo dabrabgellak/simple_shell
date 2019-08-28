@@ -19,7 +19,7 @@ void shell_loop(char *argv[], char **paths, char *env[], bool interactive)
 		{
 		write(STDOUT_FILENO, "$ ", 2 * sizeof(char));
 		}
-		line = read_line();
+		line = read_line(paths);
 		if (line == NULL)
 			continue;
 
@@ -28,6 +28,7 @@ void shell_loop(char *argv[], char **paths, char *env[], bool interactive)
 		free(line);
 		free(token);
 	}
+	free(paths);
 }
 
 /**
