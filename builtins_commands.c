@@ -8,11 +8,11 @@
 
 void env_builtin(char *env[])
 {
-        int i;
+	int i;
 
-        for (i = 0; env[i] != NULL; i++)
-        {
-                write(STDOUT_FILENO, env[i], _strlen(env[i]) * sizeof(char));
-                write(STDOUT_FILENO, "\n", sizeof(char));
-        }
+	for (i = 0; env[i] != NULL; i++)
+	{
+		write(STDOUT_FILENO, env[i], _strlen(env[i]) * sizeof(char));
+		write(STDOUT_FILENO, "\n", sizeof(char));
+	}
 }

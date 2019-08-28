@@ -47,9 +47,9 @@ char **string_split(char *line, char *delim)
 	/** Checks if malloc did alloc */
 	if (token == NULL)
 	{
-		return(NULL);
+		return (NULL);
 	}
-	
+
 	/** First token in 0 position is gonna receive line and delim  */
 	token[0] = strtok(line, delim);
 
@@ -131,16 +131,12 @@ int execute(char *token[], char **paths, char *env[])
 
 	/** Env builtin */
 	if (_strcmp(token[0], "env") == 0)
-	{
 		env_builtin(env);
 		return (1);
-	}
 
 	/** Exit builtin */
 	if (_strcmp(token[0], "exit") == 0)
-	{
 		exit(0);
-	}
 
 	/** Creates a child */
 	parent_id = fork();
@@ -150,22 +146,17 @@ int execute(char *token[], char **paths, char *env[])
 	{
 		exec_path = get_exec_path(token[0], paths);
 		if (exec_path == NULL)
-		{
 			perror("DOES NOT EXIST");
 			exit(0);
-		}
 		token[0] = exec_path;
 		if (execv(exec_path, token) == -1)
-		{
 			perror("DOES NOT EXIST");
 			exit(0);
-		}
 	}
 	else
 	{
 		/** If its not on the child then wait for it */
 		wait(&child_status);
 	}
-
 	return (1);
 }
