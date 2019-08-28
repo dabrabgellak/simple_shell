@@ -84,7 +84,7 @@ char *get_exec_path(char *command, char **paths)
 		return (NULL);
 	}
 
-	/** Instead of command a slash is passed */
+	/** Command starts with a '/', i.e. it is an absolute path */
 	if (command[0] == '/')
 	{
 		if (access(command, X_OK) == -1)
