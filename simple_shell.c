@@ -27,7 +27,7 @@ int main(__attribute__((unused)) int argc,
 
 	interactive = isatty(STDIN_FILENO);
 
-	shell_loop(paths, env, interactive);
+	shell_loop(argv[0], paths, env, interactive);
 	return (EXIT_SUCCESS);
 }
 
@@ -39,7 +39,7 @@ int main(__attribute__((unused)) int argc,
  * Return: Nothing.
  */
 
-void shell_loop(char **paths, char *env[], bool interactive)
+void shell_loop(char *argv0, char **paths, char *env[], bool interactive)
 {
 	char *line = 0;
 	char **token;
@@ -55,7 +55,7 @@ void shell_loop(char **paths, char *env[], bool interactive)
 		if (line == NULL)
 			continue;
 		token = string_split(line, " ");
-		status = execute(token, paths, env);
+		status = execute(argv0, token, paths, env);
 		free(line);
 		free(token);
 	}
