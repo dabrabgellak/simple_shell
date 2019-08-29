@@ -4,6 +4,7 @@
 /**
  * read_line - Reads a line.
  * Return: line.
+ * @paths: All the paths from $PATH environment variable
  */
 
 char *read_line(char **paths)
@@ -15,7 +16,7 @@ char *read_line(char **paths)
 	if (getline(&line, &sizeline, stdin) == EOF)
 	{
 		free(line);
-		free (paths);
+		free(paths);
 		exit(0);
 	}
 
@@ -123,48 +124,44 @@ char *get_exec_path(char *command, char **paths)
  * Return: 1
  */
 
-int execute(char *token[], char **paths, char *env[])
+int execute(char *argv[], char *token[], char **paths, char *env[])
 {
 	pid_t parent_id;
 	pid_t child_status;
 	char *exec_path;
 
-	/** Env builtin */
-	if (_strcmp(token[0], "env") == 0)
+	if (_strcmp(token[0], "env") == 0) /** Env builtin */
 	{
 		env_builtin(env);
 		return (1);
 	}
-	/** Exit builtin */
-	if (_strcmp(token[0], "exit") == 0)
+	if (_strcmp(token[0], "exit") == 0) /** Exit builtin */
 	{
 		free(token[0]);
 		free(token);
 		free(paths);
 		exit(0);
 	}
-	/** Creates a child */
-	parent_id = fork();
-	/** If its on the child */
-	if (parent_id == 0)
+	parent_id = fork(); /** Creates a child */
+	if (parent_id == 0) /** If its on the child */
 	{
 		exec_path = get_exec_path(token[0], paths);
 		if (exec_path == NULL)
 		{
-			perror(":");
-			exit(0);
+/**write(STDOUT_FILENO, env[i], _strlen(env[i]) * sizeof(char));*/
+			perror(*paths);
+			exit(EXIT_SUCCESS);
 		}
 		token[0] = exec_path;
 		if (execve(exec_path, token, env) == -1)
 		{
-			perror(":");
-			exit(0);
+			perror(argv[0]);
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
-		/** If its not on the child then wait for it */
-		wait(&child_status);
+		wait(&child_status);/** If its not on the child then wait for it */
 	}
 	return (1);
 }
