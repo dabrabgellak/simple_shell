@@ -7,7 +7,7 @@
  * @interactive: Boolean (To check if is true of false)
  * Return: Nothing.
  */
-void shell_loop(char **paths, char *env[], bool interactive)
+void shell_loop(char *argv[], char **paths, char *env[], bool interactive)
 {
 	char *line = 0;
 	char **token;
@@ -19,13 +19,12 @@ void shell_loop(char **paths, char *env[], bool interactive)
 		{
 			write(STDOUT_FILENO, "$ ", 2 * sizeof(char));
 		}
-	
 		line = read_line(paths);
 		if (line == NULL)
 			continue;
 
 		token = string_split(line, " ");
-		status = execute(token, paths, env);
+		status = execute(argv, token, paths, env);
 		free(line);
 		free(token);
 	}
@@ -58,6 +57,6 @@ int main(__attribute__((unused)) int argc,
 
 	interactive = isatty(STDIN_FILENO);
 
-	shell_loop(paths, env, interactive);
+	shell_loop(argv, paths, env, interactive);
 	return (EXIT_SUCCESS);
 }

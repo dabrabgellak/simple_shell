@@ -11,10 +11,10 @@
 #include <sys/wait.h>
 #include <stdbool.h>
 
-void shell_loop(char **paths, char *env[], bool interactive);
+void shell_loop(char *argv[], char **paths, char *env[], bool interactive);
 char *read_line(char **paths);
 char **string_split(char *line, char *delim);
-int execute(char *token[], char **paths, char *env[]);
+int execute(char *argv[], char *token[], char **paths, char *env[]);
 int _strlen(const char *s);
 int _strcmp(char *s1, char *s2);
 bool _starts_with(const char *pre, const char *str);
