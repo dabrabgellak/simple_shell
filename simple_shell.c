@@ -47,6 +47,8 @@ int main(__attribute__((unused)) int argc,
 	char **paths = NULL;
 	bool interactive;
 
+	signal(SIGINT, control_signal);
+
 	for (i = 0; env[i] != NULL; i++)
 	{
 		if (_starts_with("PATH=", env[i]))

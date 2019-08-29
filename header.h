@@ -10,6 +10,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <stdbool.h>
+#include <signal.h>
 
 void shell_loop(char **paths, char *env[], bool interactive);
 char *read_line(char **paths);
@@ -20,5 +21,6 @@ int _strcmp(char *s1, char *s2);
 bool _starts_with(const char *pre, const char *str);
 char *_concat(const char *str1, const char *str2);
 void env_builtin(char *env[]);
+void control_signal(int sig);
 
 #endif
