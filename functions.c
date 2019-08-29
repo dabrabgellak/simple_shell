@@ -148,7 +148,8 @@ int execute(char *argv[], char *token[], char **paths, char *env[])
 		exec_path = get_exec_path(token[0], paths);
 		if (exec_path == NULL)
 		{
-			/*perror("")*/
+/**write(STDOUT_FILENO, env[i], _strlen(env[i]) * sizeof(char));*/
+			perror(*paths);
 			exit(EXIT_SUCCESS);
 		}
 		token[0] = exec_path;
