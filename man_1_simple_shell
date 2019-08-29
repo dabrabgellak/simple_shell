@@ -1,4 +1,4 @@
-.TH Dollarshell "version 1.0" "28/08/19"
+.TH Dollarshell "28/08/19" "version 1.0"
 .SH NAME
 Dollar shell \- Simple UNIX command interpreter.
 
@@ -9,6 +9,11 @@ Dollar shell \- Simple UNIX command interpreter.
 .B Is an sh- compatible command language interpreter that executes commands read from the standar input or from a file.
 Interprets flags and uses space as a delimiter between each argument.
 
+.SS Command
+.TP
+\fBls [-] [flag]\fR
+Lists all files and directories.
+
 .SS Builtins
 This section list the builtin commands
 
@@ -16,9 +21,6 @@ This section list the builtin commands
 .TP
 \fBexit [exitstatus]\fR
 Terminate the shell process.
-.TP
-\fBhelp [PATTERN ...]\fR
-Display information about builtin commands.
 .TP
 \fBenv [-] [NAME=VALUE]...\fR
 Prints out the current environment.
